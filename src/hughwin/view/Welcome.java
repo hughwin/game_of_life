@@ -42,7 +42,10 @@ public class Welcome {
         JPanel buttonsPanel = new JPanel();
         containerPanel.add(buttonsPanel);
         Button startButton = new Button("Start");
-        startButton.addActionListener(e -> gameStart.startGame(rowsField.getInteger(), cellsField.getInteger()));
+        startButton.addActionListener(e -> {
+            gameStart.startGame(rowsField.getInteger(), cellsField.getInteger());
+            frame.dispose();
+        });
         buttonsPanel.add(startButton);
 
         frame.pack();

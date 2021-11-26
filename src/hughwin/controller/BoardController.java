@@ -10,6 +10,7 @@ public class BoardController {
 
     private Board board;
     private Welcome welcome;
+    private BoardView boardView;
 
     public BoardController(){
         this.welcome = new Welcome(this);
@@ -17,6 +18,7 @@ public class BoardController {
 
     public void startGame(int rowsAndColumns, int cells){
         this.board = new Board(rowsAndColumns, this);
+        this.boardView = new BoardView(rowsAndColumns);
         System.out.println("Starting game " + rowsAndColumns);
     }
 
