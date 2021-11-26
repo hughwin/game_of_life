@@ -19,7 +19,6 @@ public class Board {
     }
 
     public void generateInitialCells(int cells) {
-        Random random = new Random();
         for (int i = 0; i < cells; i++) {
             generateUniqueCell();
         }
@@ -29,7 +28,10 @@ public class Board {
         Random random = new Random();
         Cell cell = new Cell(random.nextInt(x), random.nextInt(x));
         if (cellSet.contains(cell)) generateUniqueCell();
-        else matrix[cell.getX()][cell.getY()] = cell;
+        else {
+            matrix[cell.getX()][cell.getY()] = cell;
+            cellSet.add(cell);
+        }
         return cell;
     }
 
