@@ -4,12 +4,17 @@ import javax.swing.*;
 import javax.swing.text.NumberFormatter;
 import java.text.NumberFormat;
 
-public class RowsAndColumns{
+public class NumberInputField {
 
     private JFormattedTextField field;
-    private final String initialText = "Enter the bounds here";
+    private JPanel numberInputPanel;
 
-    public RowsAndColumns(){
+    public NumberInputField(String text){
+        JPanel panel = new JPanel(); // flowLayout
+        this.numberInputPanel = panel;
+
+        JLabel jLabel = new JLabel(text);
+
         NumberFormat format = NumberFormat.getInstance();
         NumberFormatter formatter = new NumberFormatter(format);
         formatter.setValueClass(Integer.class);
@@ -22,10 +27,13 @@ public class RowsAndColumns{
         field.setText("");
         field.setColumns(30);
         this.field = field;
+
+        panel.add(jLabel);
+        panel.add(this.field);
     }
 
-    public JFormattedTextField getField (){
-        return field;
+    public JPanel getField (){
+        return numberInputPanel;
     }
 
     public int getInteger() {

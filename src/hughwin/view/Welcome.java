@@ -1,6 +1,6 @@
 package hughwin.view;
 
-import hughwin.controller.GameStart;
+import hughwin.controller.BoardController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,13 +9,11 @@ public class Welcome {
 
     private final String splash = "Welcome to Conway's Game of Life!";
     private final String instructions = "Please select the number rows and columns for the Game of Life. The program will then create a square matrix.";
-    private RowsAndColumns rowsAndColumns;
-    private GameStart gameStart;
+    private BoardController gameStart;
 
-    public Welcome(GameStart gameStart){
+    public Welcome(BoardController gameStart){
 
         this.gameStart = gameStart;
-        this.rowsAndColumns = new RowsAndColumns();
 
         JFrame frame = new JFrame("Conway's Game of Life");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -35,14 +33,16 @@ public class Welcome {
         JLabel instructionsLabel = new JLabel(String.format("<html><body style=\"text-align: justify;  text-justify: inter-word;\">%s</body></html>", instructions));
         instructionsPanel.add(instructionsLabel);
 
-        JPanel settingsPanel = new JPanel();
-        containerPanel.add(settingsPanel);
-        settingsPanel.add(rowsAndColumns.getField());
+        NumberInputField rowsField = new NumberInputField("Enter the rows and columns here");
+        containerPanel.add(rowsField.getField());
+
+        NumberInputField cellsField = new NumberInputField("Enter the number of starting cells here");
+        containerPanel.add(cellsField.getField());
 
         JPanel buttonsPanel = new JPanel();
         containerPanel.add(buttonsPanel);
         Button startButton = new Button("Start");
-        startButton.addActionListener(e -> gameStart.startGame(rowsAndColumns.getInteger()));
+        startButton.addActionListener(e -> gameStart.startGame(rowsField.getInteger(), cellsField.getInteger()));
         buttonsPanel.add(startButton);
 
         frame.pack();

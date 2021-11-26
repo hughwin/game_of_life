@@ -1,10 +1,10 @@
 package hughwin.main;
 
 
-import hughwin.controller.GameStart;
+import hughwin.controller.BoardController;
 
 public class Main {
     public static void main(String[] args) {
-        new GameStart();
+        new BoardController();
     }
 }
