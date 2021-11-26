@@ -33,7 +33,12 @@ public class BoardView {
     }
 
     public void paintSquareAsCell(int x, int y) {
-        System.out.println("Setting background: " + x + " " + y);
         squareMatrix[x][y].setBackground(Color.black);
+        squareMatrix[x][y].repaint();
+    }
+
+    public void paintAsEmpty(int x, int y) {
+        squareMatrix[x][y].setBackground(Color.white);
+        squareMatrix[x][y].repaint();
     }
 }

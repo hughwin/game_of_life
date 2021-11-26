@@ -19,16 +19,18 @@ public class BoardController {
 
     public void startGame(int rowsAndColumns, int cells) {
         this.grid = rowsAndColumns;
-        this.board = new Board(rowsAndColumns, cells, this);
         this.boardView = new BoardView(rowsAndColumns);
+        this.board = new Board(rowsAndColumns, cells, this);
         System.out.println("Starting game " + rowsAndColumns);
-        updateBoard(board.getMatrix());
+        Thread gameThread = new Thread(board);
+        gameThread.start();
     }
 
     public void updateBoard(Cell[][] matrix) {
         for (int i = 0; i < grid; i++) {
             for (int k = 0; k < grid; k++) {
                 if (matrix[i][k] != null) boardView.paintSquareAsCell(i, k);
+                else boardView.paintAsEmpty(i, k);
             }
         }
     }
