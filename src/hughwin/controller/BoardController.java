@@ -6,8 +6,6 @@ import hughwin.view.BoardView;
 import hughwin.view.Welcome;
 
 import javax.swing.*;
-import java.lang.reflect.InvocationTargetException;
-
 
 public class BoardController {
 
@@ -24,12 +22,11 @@ public class BoardController {
         this.grid = rowsAndColumns;
         this.boardView = new BoardView(rowsAndColumns);
         this.board = new Board(rowsAndColumns, cells, this);
-        System.out.println("Starting game " + rowsAndColumns);
         BoardWorker boardWorker = new BoardWorker();
         boardWorker.execute();
     }
 
-    public void updateBoard(Cell[][] matrix) throws InterruptedException, InvocationTargetException {
+    public void updateBoard(Cell[][] matrix) {
         for (int i = 0; i < grid; i++) {
             for (int k = 0; k < grid; k++) {
                 if (matrix[i][k] != null) boardView.paintSquareAsCell(i, k);
@@ -42,10 +39,14 @@ public class BoardController {
     private class BoardWorker extends SwingWorker<Cell[][], Void> {
 
         @Override
-        protected Cell[][] doInBackground() {
+        protected Cell[][] doInBackground() throws InterruptedException {
+            board.generateInitialCells();
+            boardView.updateBoard();
+            Thread.sleep(1000);
             //noinspection InfiniteLoopStatement
             while (true) {
                 board.advanceOneGeneration();
+                System.out.println("Advancing");
             }
         }
     }
