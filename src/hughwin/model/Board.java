@@ -2,11 +2,12 @@ package hughwin.model;
 
 import hughwin.controller.BoardController;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 
-public class Board implements Runnable {
+public class Board {
 
     private final int x;
     private final Cell[][] matrix;
@@ -62,19 +63,10 @@ public class Board implements Runnable {
                 else matrix[i][j] = null;
             }
         }
-        boardController.updateBoard(matrix);
         try {
-            Thread.sleep(500);
-        } catch (InterruptedException e) {
+            boardController.updateBoard(matrix);
+        } catch (InterruptedException | InvocationTargetException e) {
             e.printStackTrace();
-        }
-    }
-
-    @Override
-    public void run() {
-        //noinspection InfiniteLoopStatement
-        while (true) {
-            advanceOneGeneration();
         }
     }
 }
