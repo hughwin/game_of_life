@@ -9,7 +9,7 @@ public class Welcome {
 
     private final String splash = "Welcome to Conway's Game of Life!";
     private final String instructions = "Please select the number rows and columns for the Game of Life. The program will then create a square matrix.";
-    private BoardController gameStart;
+    private final BoardController gameStart;
 
     public Welcome(BoardController gameStart){
 
@@ -33,17 +33,17 @@ public class Welcome {
         JLabel instructionsLabel = new JLabel(String.format("<html><body style=\"text-align: justify;  text-justify: inter-word;\">%s</body></html>", instructions));
         instructionsPanel.add(instructionsLabel);
 
-        NumberInputField rowsField = new NumberInputField("Enter the rows and columns here");
+        NumberInputSlider rowsField = new NumberInputSlider("Enter the rows and columns here", 10, 100);
         containerPanel.add(rowsField.getField());
 
-        NumberInputField cellsField = new NumberInputField("Enter the number of starting cells here");
+        NumberInputSlider cellsField = new NumberInputSlider("Enter the number of starting cells here", 1, 1000);
         containerPanel.add(cellsField.getField());
 
         JPanel buttonsPanel = new JPanel();
         containerPanel.add(buttonsPanel);
         Button startButton = new Button("Start");
         startButton.addActionListener(e -> {
-            gameStart.startGame(rowsField.getInteger(), cellsField.getInteger());
+            gameStart.startGame(rowsField.getValue(), cellsField.getValue());
             frame.dispose();
         });
         buttonsPanel.add(startButton);

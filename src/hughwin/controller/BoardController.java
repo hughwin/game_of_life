@@ -19,6 +19,7 @@ public class BoardController {
     }
 
     public void startGame(int rowsAndColumns, int cells) {
+        if (cells > rowsAndColumns * rowsAndColumns) cells = rowsAndColumns * rowsAndColumns;
         this.grid = rowsAndColumns;
         this.boardView = new BoardView(rowsAndColumns);
         this.board = new Board(rowsAndColumns, cells, this);
