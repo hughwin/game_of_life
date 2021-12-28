@@ -13,13 +13,14 @@ public class BoardController {
     private Board board;
     private int grid;
     private BoardView boardView;
+    private final double CELL_DENSITY = .4;
 
     public BoardController() {
         this.welcome = new Welcome(this);
     }
 
     public void startGame(int rowsAndColumns) {
-        int cells = (int) ((rowsAndColumns * rowsAndColumns) * .4);
+        int cells = (int) ((rowsAndColumns * rowsAndColumns) * CELL_DENSITY);
         this.grid = rowsAndColumns;
         this.boardView = new BoardView(rowsAndColumns);
         this.board = new Board(rowsAndColumns, cells, this);
