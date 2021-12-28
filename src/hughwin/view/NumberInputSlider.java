@@ -29,11 +29,13 @@ public class NumberInputSlider {
                 System.out.println(value);
             }
         });
-
+        slider.setMinimum(LOWER_BOUND);
+        slider.setMaximum(HIGHER_BOUND);
+        slider.setValue(50);
         slider.setMajorTickSpacing(100);
-        slider.setMinorTickSpacing(100);
+        slider.setMinorTickSpacing(10);
         slider.setPaintTicks(true);
-        slider.setPaintTicks(true);
+        slider.setPaintTrack(true);
         slider.setPaintLabels(true);
 
         panel.add(jLabel);

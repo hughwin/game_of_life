@@ -33,7 +33,7 @@ public class Welcome {
         JLabel instructionsLabel = new JLabel(String.format("<html><body style=\"text-align: justify;  text-justify: inter-word;\">%s</body></html>", instructions));
         instructionsPanel.add(instructionsLabel);
 
-        NumberInputSlider rowsField = new NumberInputSlider("Enter the rows and columns here:", 10, 100);
+        NumberInputSlider rowsField = new NumberInputSlider("Set the number of rows and columns here:", 10, 100);
         containerPanel.add(rowsField.getField());
 
         JPanel buttonsPanel = new JPanel();
