@@ -17,10 +17,7 @@ public class Cell {
     public int getY() {
         return this.y;
     }
-
-    public void killCell() {
-
-    }
+    
 
     @Override
     public boolean equals(Object obj) {
