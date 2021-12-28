@@ -33,17 +33,14 @@ public class Welcome {
         JLabel instructionsLabel = new JLabel(String.format("<html><body style=\"text-align: justify;  text-justify: inter-word;\">%s</body></html>", instructions));
         instructionsPanel.add(instructionsLabel);
 
-        NumberInputSlider rowsField = new NumberInputSlider("Enter the rows and columns here", 10, 100);
+        NumberInputSlider rowsField = new NumberInputSlider("Enter the rows and columns here:", 10, 100);
         containerPanel.add(rowsField.getField());
-
-        NumberInputSlider cellsField = new NumberInputSlider("Enter the number of starting cells here", 1, 1000);
-        containerPanel.add(cellsField.getField());
 
         JPanel buttonsPanel = new JPanel();
         containerPanel.add(buttonsPanel);
         Button startButton = new Button("Start");
         startButton.addActionListener(e -> {
-            gameStart.startGame(rowsField.getValue(), cellsField.getValue());
+            gameStart.startGame(rowsField.getValue());
             frame.dispose();
         });
         buttonsPanel.add(startButton);

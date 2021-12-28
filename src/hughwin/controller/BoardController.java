@@ -14,12 +14,12 @@ public class BoardController {
     private int grid;
     private BoardView boardView;
 
-    public BoardController(){
+    public BoardController() {
         this.welcome = new Welcome(this);
     }
 
-    public void startGame(int rowsAndColumns, int cells) {
-        if (cells > rowsAndColumns * rowsAndColumns) cells = rowsAndColumns * rowsAndColumns;
+    public void startGame(int rowsAndColumns) {
+        int cells = (int) ((rowsAndColumns * rowsAndColumns) * .4);
         this.grid = rowsAndColumns;
         this.boardView = new BoardView(rowsAndColumns);
         this.board = new Board(rowsAndColumns, cells, this);
@@ -43,10 +43,11 @@ public class BoardController {
         protected Cell[][] doInBackground() throws InterruptedException {
             board.generateInitialCells();
             boardView.updateBoard();
-            Thread.sleep(1000);
             //noinspection InfiniteLoopStatement
             while (true) {
+                boardView.updateBoard();
                 board.advanceOneGeneration();
+                Thread.sleep(200);
                 System.out.println("Advancing");
             }
         }
